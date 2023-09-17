@@ -1,14 +1,166 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Bookstore</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
 
-  <body>
-    Hello world
-    <script src="script.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Bookstore</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="header__logo">
+      <span>Bookstore</span>
+    </div>
+    <div class="header__account">
+      <div class="account__avatar">
+        <img src="./images/avatar.png" alt="Account Avatar">
+      </div>
+      <div class="account__name">
+        <span>SoraNPT</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main id="main">
+    <div id="store__action">
+      <div class="action__search">
+        <input id="search__keyword" type="text" name="search__keyword" autocomplete="on" placeholder="Search book ...">
+      </div>
+      <div class="action__add">
+        <button class="btn">Add book</button>
+      </div>
+    </div>
+    <div id="store__product">
+      <table>
+        <thead>
+          <tr class="product__head">
+            <th>Serial</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Topic</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div id="modal__container">
+    <!-- Modal: Add book -->
+    <div class="modal modal__add">
+      <div class="header">
+        <div class="header__title">
+          <span>Add book</span>
+        </div>
+        <div class="header__btn">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+              viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="content">
+        <form action="">
+          <label for="input__name">Name</label>
+          <input id="input__name" type="text" name="name" placeholder="Enter book's name ..." autocomplete="on">
+          <label for="input__author">Author</label>
+          <input id="input__author" type="text" name="author" placeholder="Enter book's author ..." autocomplete="on">
+          <label for="input__topic">Topic</label>
+          <select id="input__topic" name="topic">
+            <option value="" disabled hidden selected>Select book's topic</option>
+            <option value="Programming">Programming</option>
+            <option value="Design Patterns">Database</option>
+            <option value="Database">DevOps</option>
+          </select>
+        </form>
+      </div>
+      <div class="footer">
+        <div class="footer__action">
+          <button class="btn action__add">Create</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Update book -->
+    <div class="modal modal__update">
+      <div class="header">
+        <div class="header__title">
+          <span>Update book</span>
+        </div>
+        <div class="header__btn">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+              viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="content">
+        <form action="">
+          <label for="input__name">Name</label>
+          <input id="input__name" type="text" name="name" placeholder="Enter book's name ..." autocomplete="on">
+          <label for="input__author">Author</label>
+          <input id="input__author" type="text" name="author" placeholder="Enter book's author ..." autocomplete="on">
+          <label for="input__topic">Topic</label>
+          <select id="input__topic" name="topic">
+            <option value="" disabled hidden selected>Select book's topic</option>
+            <option value="Programming">Programming</option>
+            <option value="Design Patterns">Database</option>
+            <option value="Database">DevOps</option>
+          </select>
+        </form>
+      </div>
+      <div class="footer">
+        <div class="footer__action">
+          <button class="btn action__update">Update</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Delete book -->
+    <div class="modal modal__delete">
+      <div class="header">
+        <div class="header__title">
+          <span>Delete book</span>
+        </div>
+        <div class="header__btn">
+          <button>
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+              viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="content">
+        <span>Do you want to delete the book named</span><br>
+        <span><b class="content__book">"Clean Code: A Handbook of Agile Software Craftsmanship"</b> ?</span>
+      </div>
+      <div class="footer">
+        <div class="footer__action">
+          <button class="btn btn-option action__cancel">Cancel</button>
+        </div>
+        <div class="footer__action">
+          <button class="btn btn-option action__delete">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
 </html>
