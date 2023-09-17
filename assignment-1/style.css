@@ -31,7 +31,11 @@ body {
   background-color: #cbd5de;
 }
 
-.btn.btn-option:hover {
+.btn.btn-option.btn-selected {
+  background-color: crimson;
+}
+
+.btn.btn-option.btn-selected:hover {
   opacity: 1;
   background-color: crimson;
 }
@@ -213,11 +217,9 @@ body {
   justify-content: end;
 }
 
-/* #modal__container .modal.modal__delete {
+.modal.modal__delete .footer__action {
+  width: 100%;
   display: flex;
-} */
-
-.modal.modal__delete .footer{
   justify-content: center;
   gap: 24px;
 }

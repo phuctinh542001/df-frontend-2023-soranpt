@@ -58,7 +58,7 @@ const renderStoreTable = () => {
 const handleLoadDocument = () => {
   const getBooksLS = JSON.parse(localStorage.getItem("bookStore"));
   if (getBooksLS) {
-    dataBooks = [...getBooksLS]
+    dataBooks = [...getBooksLS];
   }
 
   listBooks = [...dataBooks];
@@ -115,7 +115,10 @@ const handleOpenModalDelete = (id) => {
   $("#modal__container").style.display = "flex";
   $("#modal__container .modal.modal__delete").style.display = "flex";
 
-  $(".modal__delete .footer__action .action__delete").addEventListener(
+  const currentBook = dataBooks.find((book) => book.id === id);
+  $(".modal__delete .content .content__book").innerHTML = currentBook.name;
+
+  $(".modal__delete .footer__action .action__delete button").addEventListener(
     "click",
     () => {
       handleDeleteBook(id);
@@ -146,6 +149,10 @@ const handleAddBook = () => {
 
   dataBooks.push(newBook);
   listBooks.push(newBook);
+
+  $(".modal__update form input#input__name").value = "";
+  $(".modal__update form input#input__author").value = "";
+  $(".modal__update form select#input__topic").value = "";
 
   localStorage.setItem("bookStore", JSON.stringify(dataBooks));
   handleCloseModal();
@@ -211,16 +218,24 @@ $("#store__action .action__add button").addEventListener(
 );
 
 // Listen: Click button Cancel Delete book
-$(".modal__delete .footer__action .action__cancel").addEventListener(
-  "click",
-  () => {
-    handleCloseModal();
-  }
-);
+$(".modal__delete .action__cancel button").addEventListener("click", () => {
+  handleCloseModal();
+});
 
 // Listen: Click button Close Modal
 $$(".modal .header__btn button").forEach((button) => {
   button.addEventListener("click", handleCloseModal);
+});
+
+// Listen: Hover button
+$$(".modal__delete .action__btn .btn-option").forEach((option) => {
+  option.addEventListener("mouseover", () => {
+    if (!option.classList.contains("btn-selected")) {
+      $$(".modal__delete .action__btn .btn-option").forEach((btn) => {
+        btn.classList.toggle("btn-selected");
+      });
+    }
+  });
 });
 
 // Listen: Click backdrop
