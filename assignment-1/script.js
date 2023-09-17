@@ -28,6 +28,7 @@ let dataBooks = [
 
 // List book show in table
 let listBooks = [];
+let currentHandleBook = {};
 
 // ====================
 // Functions Handler
@@ -84,12 +85,6 @@ const handleSearchBook = (keyword) => {
 const handleOpenModalAdd = () => {
   $("#modal__container").style.display = "flex";
   $("#modal__container .modal.modal__add").style.display = "flex";
-
-  // Listen: Submit Modal Add book
-  $(".modal__add .footer__action .action__add").addEventListener(
-    "click",
-    handleAddBook
-  );
 };
 
 // Handle: Open Modal Update book
@@ -97,17 +92,10 @@ const handleOpenModalUpdate = (id) => {
   $("#modal__container").style.display = "flex";
   $("#modal__container .modal.modal__update").style.display = "flex";
 
-  const currentBook = dataBooks.find((book) => book.id === id);
-  $(".modal__update form input#input__name").value = currentBook.name;
-  $(".modal__update form input#input__author").value = currentBook.author;
-  $(".modal__update form select#input__topic").value = currentBook.topic;
-
-  $(".modal__update .footer__action .action__update").addEventListener(
-    "click",
-    () => {
-      handleUpdateBook(id);
-    }
-  );
+  currentHandleBook = dataBooks.find((book) => book.id === id);
+  $(".modal__update form input#input__name").value = currentHandleBook.name;
+  $(".modal__update form input#input__author").value = currentHandleBook.author;
+  $(".modal__update form select#input__topic").value = currentHandleBook.topic;
 };
 
 // Handle: Open Modal Delete book
@@ -115,18 +103,11 @@ const handleOpenModalDelete = (id) => {
   $("#modal__container").style.display = "flex";
   $("#modal__container .modal.modal__delete").style.display = "flex";
 
-  const currentBook = dataBooks.find((book) => book.id === id);
-  $(".modal__delete .content .content__book").innerHTML = currentBook.name;
-
-  $(".modal__delete .footer__action .action__delete button").addEventListener(
-    "click",
-    () => {
-      handleDeleteBook(id);
-    }
-  );
+  currentHandleBook = dataBooks.find((book) => book.id === id);
+  $(".modal__delete .content .content__book").innerHTML = currentHandleBook.name;
 };
 
-// Handle: Open Modal Delete book
+// Handle: Close Modal
 const handleCloseModal = () => {
   console.log("Close Modal");
   $("#modal__container .modal.modal__add").style.display = "none";
@@ -160,12 +141,12 @@ const handleAddBook = () => {
 };
 
 // Handle: Update book
-const handleUpdateBook = (id) => {
+const handleUpdateBook = (currentHandleBook) => {
   console.log("Update Book");
   const dataForm = new FormData($(".modal__update .content form"));
 
   dataBooks = dataBooks.map((book) => {
-    if (book.id == id) {
+    if (book.id == currentHandleBook.id) {
       return {
         ...book,
         name: dataForm.get("name"),
@@ -183,11 +164,11 @@ const handleUpdateBook = (id) => {
 };
 
 // Handle: Delete book
-const handleDeleteBook = (id) => {
+const handleDeleteBook = (currentHandleBook) => {
   console.log("Delete Book");
 
   dataBooks = dataBooks.filter((book) => {
-    return book.id !== id;
+    return book.id !== currentHandleBook.id;
   });
 
   listBooks = [...dataBooks];
@@ -226,6 +207,28 @@ $(".modal__delete .action__cancel button").addEventListener("click", () => {
 $$(".modal .header__btn button").forEach((button) => {
   button.addEventListener("click", handleCloseModal);
 });
+
+// Listen: Submit Modal Add book
+$(".modal__add .footer__action .action__add").addEventListener(
+  "click",
+  handleAddBook
+);
+
+// Listen: Submit Modal Update book
+$(".modal__update .footer__action .action__update").addEventListener(
+  "click",
+  () => {
+    handleUpdateBook(currentHandleBook);
+  }
+);
+
+// Listen: Submit Modal Delete book
+$(".modal__delete .footer__action .action__delete button").addEventListener(
+  "click",
+  () => {
+    handleDeleteBook(currentHandleBook);
+  }
+);
 
 // Listen: Hover button
 $$(".modal__delete .action__btn .btn-option").forEach((option) => {
