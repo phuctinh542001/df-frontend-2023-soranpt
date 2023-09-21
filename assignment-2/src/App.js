@@ -234,9 +234,6 @@ function App() {
                 <option value="Computer Science">Computer Science</option>
                 <option value="Data Science">Data Science</option>
                 <option value="Big Data">Big Data</option>
-                <option value="Software Engineering">
-                  Software Engineering
-                </option>
               </select>
             </form>
           </div>
@@ -307,9 +304,6 @@ function App() {
                 <option value="Computer Science">Computer Science</option>
                 <option value="Data Science">Data Science</option>
                 <option value="Big Data">Big Data</option>
-                <option value="Software Engineering">
-                  Software Engineering
-                </option>
               </select>
             </form>
           </div>
@@ -342,7 +336,9 @@ function App() {
                 title="Delete"
                 handleClick={() => handleDeleteBook(currentBookDelete)}
                 handleHover={() => {
-                  setIsHoverDelete(!isHoverDelete);
+                  if (!isHoverDelete) {
+                    setIsHoverDelete(!isHoverDelete);
+                  }
                 }}
               >
                 Delete
@@ -353,7 +349,9 @@ function App() {
                 title="Cancel"
                 handleClick={handleToggleDeleteModal}
                 handleHover={() => {
-                  setIsHoverDelete(!isHoverDelete);
+                  if (isHoverDelete) {
+                    setIsHoverDelete(!isHoverDelete);
+                  }
                 }}
               >
                 Cancel
