@@ -1,0 +1,23 @@
+.account,
+.account div,
+.account i,
+.account span {
+    background-color: transparent;
+}
+
+.account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.account i {
+    font-size: 32px;
+    color: gray;
+}
+
+/* Theme: Dark */
+.account.theme-dark i {
+    color: #fff;
+}

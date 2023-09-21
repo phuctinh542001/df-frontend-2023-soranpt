@@ -1,38 +1,80 @@
-.App {
+/* Normalize CSS */
+html {
+  line-height: 1.15;
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #fff;
+}
+
+body {
+  margin: 0;
+}
+
+/* Itilities  CSS*/
+.row {
+  margin: 24px 0 0;
+  padding: 0 12px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.row-end {
+  justify-content: end;
+  gap: 12px;
+}
+
+.modal-content label {
+  margin-bottom: 2px;
+  display: block;
+}
+
+.modal-content input,
+.modal-content select {
+  margin-bottom: 12px;
+  padding: 8px 8px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.modal-content.content-center {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.modal-footer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: flex-end;
+  background-color: transparent;
+}
+
+.modal-footer .footer__action {
+  background-color: transparent;
+}
+
+.modal-footer .footer__action.footer-around {
+  width: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 32px;
+}
+
+/* Theme: Dark */
+.row.theme-dark {
+  background-color: #444956;
+}
+
+
+.theme-dark.modal-content,
+.theme-dark.modal-content form,
+.theme-dark.modal-content label,
+.theme-dark.modal-content b,
+.theme-dark.modal-content span {
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  background-color: transparent;
 }
