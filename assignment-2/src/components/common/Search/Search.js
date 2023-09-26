@@ -1,6 +1,6 @@
 import styles from './Search.module.css';
 
-const Search = ({ onChangeKeyword }) => {
+const Search = ({ keyword, onChangeKeyword }) => {
   return (
     <div className={`${styles['container']}`}>
       <input
@@ -9,6 +9,7 @@ const Search = ({ onChangeKeyword }) => {
         name="search__keyword"
         autoComplete="on"
         placeholder="Search book ..."
+        defaultValue=""
         onChange={(event) => onChangeKeyword(event.target.value)}
       />
     </div>

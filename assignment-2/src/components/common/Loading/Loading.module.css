@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: disapprear 0.81s linear;
+    animation: disapprear 0.61s linear;
     background-color: rgba(0, 0, 0, 0.8);
 }
 

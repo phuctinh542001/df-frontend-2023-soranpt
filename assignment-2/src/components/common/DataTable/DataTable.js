@@ -27,11 +27,6 @@ const DataTable = ({
     setCurrentData(dataCurrentPage);
   }, [data, limitPage, currentPage]);
 
-  // const handlePageChange = (page) => {
-  //   setCurrentPage(page);
-  //   setToLocalStorage('page', page);
-  // };
-
   return (
     <div className={`${styles['container']} ${styles[`theme-${theme}`]}`}>
       <table>

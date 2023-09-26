@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useLayoutEffect, useState, useContext } from 'react';
 import { ThemeContext } from '../contexts/ThemeContext';
 import { BooksContext } from '../contexts/BooksContext';
 import { BooksDispatchContext } from '../contexts/BooksContext';
@@ -22,20 +22,20 @@ function Books() {
   const [isShowModalDelete, setIsShowModalDelete] = useState(false);
 
   const dataTitle = ['Serial', 'Name', 'Author', 'Topic', 'Action'];
-  const [dataBooks, setDataBooks] = useState(books);
   const [dataBooksShow, setDataBooksShow] = useState(books);
   const [currentPage, setCurrentPage] = useState(1);
 
   const [currentBookUpdate, setCurrentBookUpdate] = useState({});
   const [currentBookDelete, setCurrentBookDelete] = useState({});
 
+  const [keywordSearch, setKeywordSearch] = useState('');
+
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const setUp = async () => {
       setIsLoading(true);
       const localTheme = getFromLocalStorage('theme');
-      const localPage = Number(getFromLocalStorage('page'));
 
       if (!localTheme) {
         setToLocalStorage('theme', 'light');
@@ -43,20 +43,33 @@ function Books() {
         setTheme(localTheme);
       }
 
-      if (!localPage) {
-        setToLocalStorage('page', 1);
-      } else {
-        setCurrentPage(localPage);
-      }
-
-      setDataBooks(books);
-      setDataBooksShow(books);
-      await new Promise((r) => setTimeout(r, 800));
+      await new Promise((r) => setTimeout(r, 600));
       setIsLoading(false);
     };
 
     setUp();
   }, [setTheme, dispatch, books]);
+
+  useEffect(() => {
+    const localPage = Number(getFromLocalStorage('page'));
+
+    if (!localPage) {
+      setToLocalStorage('page', currentPage);
+    } else {
+      setCurrentPage(localPage);
+    }
+
+    if (keywordSearch !== '') {
+      const newDataBook = books.filter((book) => {
+        return book.name.toLowerCase().includes(keywordSearch.toLowerCase());
+      });
+
+      handlePageChange(1);
+      setDataBooksShow(newDataBook);
+    } else {
+      setDataBooksShow(books);
+    }
+  }, [currentPage, keywordSearch, books]);
 
   const handleOpenModalUpdate = (currentBook) => {
     setCurrentBookUpdate({ ...currentBook });
@@ -106,20 +119,11 @@ function Books() {
     setToLocalStorage('page', page);
   };
 
-  const handleSearch = (keyword) => {
-    const newDataBook = dataBooks.filter((book) => {
-      return book.name.toLowerCase().includes(keyword.toLowerCase());
-    });
-
-    setCurrentPage(1);
-    setDataBooksShow(newDataBook);
-  };
-
   return (
     <>
       <Main>
         <div className={`row row-end theme-${theme}`}>
-          <Search onChangeKeyword={handleSearch} />
+          <Search value={keywordSearch} onChangeKeyword={setKeywordSearch} />
           <Button
             title="Add book"
             handleClick={() => setIsShowModalCreate(true)}
