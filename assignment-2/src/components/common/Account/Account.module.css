@@ -1,0 +1,26 @@
+.account,
+.account div,
+.account i,
+.account span {
+    background-color: transparent;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.avatar i {
+    font-size: 32px;
+    color: gray;
+}
+
+/* Theme: Dark */
+.container.theme-dark,
+.container.theme-dark i,
+.container.theme-dark .name {
+    color: #fff;
+    background-color: #22272e;
+}

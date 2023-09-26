@@ -1,0 +1,27 @@
+.modal-content {
+  text-align: center;
+  background-color: transparent;
+}
+
+.modal-message {
+  margin-bottom: 12px;
+}
+
+.modal-message span,
+.modal-message b,
+.modal-message {
+  background-color: transparent
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  gap: 24px;
+}
+
+.modal-content.theme-dark label,
+.modal-content.theme-dark b,
+.modal-content.theme-dark span {
+  color: white;
+}
