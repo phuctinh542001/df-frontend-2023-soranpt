@@ -1,0 +1,30 @@
+.modal-content form,
+.modal-content label,
+.modal-content {
+  background-color: transparent;
+}
+
+.modal-content label {
+  margin-bottom: 2px;
+  display: block;
+}
+
+.modal-content input,
+.modal-content select {
+  margin-bottom: 12px;
+  padding: 8px 8px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  background-color: transparent;
+}
+
+.modal-content.theme-dark label,
+.modal-content.theme-dark b,
+.modal-content.theme-dark span {
+  color: white;
+}

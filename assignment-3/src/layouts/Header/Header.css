@@ -1,0 +1,39 @@
+#header {
+  height: 70px;
+  padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #d9e0e6;
+}
+
+.header__logo {
+  background-color: transparent;
+}
+
+.header__logo a {
+  color: black;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 32px;
+  background-color: transparent;
+}
+
+.header__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+}
+
+/* Theme: Dark */
+#header.theme-dark span,
+#header.theme-dark a {
+  color: crimson;
+}
+#header.theme-dark,
+#header.theme-dark span,
+#header.theme-dark .header__actions {
+  background-color: #22272e;
+}
